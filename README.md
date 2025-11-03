@@ -33,9 +33,23 @@ migrate create -ext sql -dir [directory file] -seq [nama_migration]
 - ```-ext sql``` ekstensi file .sql
 - ```-dir``` lokasi akan dibuatkannya file migration
 - ```-seq``` sequential numberring / mengurutkan file
-- ```[nama_migrasi]``` nama yg akan dibuatkan 
+- ```[nama_migrasi]``` nama yg akan dibuatkan
 
+Contoh:
+``` bash
+migrate create -ext sql -path /database/migration -seq create_table_users
+```
+Perintah tersebut akan membuatkan 2 file
+``` bash
+database/
+│
+└── migration/
+    ├── 000001_create_table_users.up.sql 
+    └── 000001_create_table_users.down.sql
+```
+Isi file ```.up.sql``` dengan pembuatan table, atau menambahkan constraint
 
+Isi file ```.down.sql``` untuk menghapus table, atau menghapus constraint
 > # INSTALASI
 ## 1. Pastikan sudah menginstal golang-migrate
 ``` bash
