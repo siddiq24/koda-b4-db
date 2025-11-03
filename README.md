@@ -40,7 +40,7 @@ Contoh:
 migrate create -ext sql -path /database/migration -seq create_table_users
 ```
 Perintah tersebut akan membuatkan 2 file
-``` bash
+```
 database/
 │
 └── migration/
@@ -69,14 +69,23 @@ postgres://username:password@localhost:5432/coffeeshop_db?sslmode=disable
 > ### Menjalankan semua migrasi ke versi terbaru
 
 ``` bash
-migrate -path migrations -database "postgres://username:password@localhost:5432/coffeeshop_db?sslmode=disable" up
+migrate -path up -database "postgres://username:password@localhost:5432/coffeeshop_db?sslmode=disable" up
 ```
+pada flag `-path` menggunakan up karena file migration untuk up berada di direktori `up/`
+
+tambahkan angka setelah flag `up` untuk update version beberapa langkah. misalnya `.... up 2` untuk update version 2 langkah
 > ### Rollback
 Kembali ke versi sebelumnya
 ``` bash
-migrate -path migrations -database "postgres://username:password@localhost:5432/coffeeshop_db?sslmode=disable" down
+migrate -path down -database "postgres://username:password@localhost:5432/coffeeshop_db?sslmode=disable" down
 ```
+pada flag `-path` menggunakan `down` karena file migration untuk down berada di direktori `down/`
+
+tambahkan angka setelah flag `down` untuk rollback ke beberapa versi sebelumnya. misalnya `.... down 2` untuk mundur 2 langkah dari versi sekarang
 > ### Lihat versi saat ni
 ``` bash
-migrate -path migrations -database "postgres://username:password@localhost:5432/coffeeshop_db?sslmode=disable" version
+migrate -path up -database "postgres://username:password@localhost:5432/coffeeshop_db?sslmode=disable" version
 ```
+untuk melihat versi, pada flag `-path` bisa menggunakan direktori mana saja (`up` atau `down`) yang berisi file migration `.up.sql` atau `.down.sql`.
+
+flag `-path` sangat penting agar go migrate dapat membaca file migration
