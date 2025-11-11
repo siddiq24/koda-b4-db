@@ -89,3 +89,7 @@ migrate -path up -database "postgres://username:password@localhost:5432/coffeesh
 untuk melihat versi, pada flag `-path` bisa menggunakan direktori mana saja (`up` atau `down`) yang berisi file migration `.up.sql` atau `.down.sql`.
 
 flag `-path` sangat penting agar go migrate dapat membaca file migration
+
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
